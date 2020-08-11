@@ -1,0 +1,50 @@
+.home-c-background {
+  background: rgb(245, 249, 255);
+  padding: 4rem 0;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr;
+  column-gap: 0;
+  align-items: center;
+}
+
+.contact-grid-item-img {
+  margin-left: auto;
+  margin-right: 15%;
+}
+.contact-grid-item-text {
+  text-align: left;
+}
+
+.contact-img {
+  border-radius: 50%;
+  height: 250px;
+}
+
+.contact-info {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.contact-info-outer-grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.contact-info-inner-grid {
+  display: grid;
+  grid-template-columns: 0.07fr 1fr;
+}
+
+.contact-info-item {
+  font-size: 1.25rem;
+  font-weight: 300;
+  vertical-align: middle;
+}
+
+.contact-info-icon {
+  font-size: 1.65rem;
+  text-align: center;
+}

@@ -1,0 +1,139 @@
+.modal-wrapper__campground-view-edit {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.modal-backdrop__campground-view-edit {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.685);
+}
+
+.modal-box__campground-view-edit {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75%;
+  width: 50%;
+  overflow-y: auto;
+  background: var(--primary-grey);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 7;
+  opacity: 1;
+  padding: 3%;
+}
+
+.exit-button-view-edit {
+  border: none;
+  background-color: var(--primary-grey);
+  font-size: 2rem;
+  float: right;
+  padding-bottom: 9px;
+}
+
+.exit-button-view-edit:focus {
+  outline: none;
+}
+
+.header__campground-view-edit {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  align-items: center;
+}
+
+.form-container__campground-view-edit {
+  padding-left: 5%;
+}
+
+.input__campground-view-edit {
+  border: none;
+  border-radius: 5px;
+  padding: 2px 9px;
+  font-weight: 300;
+  color: rgb(1, 37, 92);
+  background-color: rgba(255, 255, 255, 0.575);
+}
+
+.input__campground-view-edit:focus {
+  color: rgb(1, 37, 92);
+}
+
+.campground-view-header {
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  align-items: center;
+  margin-bottom: 1%;
+}
+
+.campground-view-edit-button {
+  margin: 0;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 0.2rem;
+  margin: 0 10%;
+  color: black;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.campground-view-edit-button:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #ffbb33;
+}
+
+.confirm-button-container {
+  margin-top: 7%;
+  text-align: center;
+}
+
+.campground-view-edit-button-confirm {
+  margin: auto;
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--quinary-color)
+  );
+  padding: 0.2rem 1.5rem;
+  color: rgb(112, 112, 112);
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.campground-view-edit-button-confirm:hover {
+  color: rgb(245, 245, 245);
+  text-decoration: none;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--quinary-color)
+  );
+}
+.campground-view-button-delete {
+  margin: 0;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 0.2rem;
+  margin: 0 10%;
+  color: black;
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.campground-view-button-delete:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: rgb(231, 23, 23);
+}

@@ -1,0 +1,55 @@
+.header-box {
+  padding-top: 14rem;
+  padding-left: 10%;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+.header-logo {
+  width: 175px;
+}
+
+.header-text h1 {
+  font-weight: 100;
+  font-size: 5.5rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.header-text p {
+  font-weight: 100;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.header-secondary {
+  padding-left: 3%;
+}
+
+.call-to-action {
+  margin: 0 0 0 3%;
+  border: 2px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--quinary-color)
+  );
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0);
+  color: #fff !important;
+  font-weight: 100;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.call-to-action:hover {
+  color: #fff !important;
+  text-decoration: none;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--quinary-color)
+  );
+}

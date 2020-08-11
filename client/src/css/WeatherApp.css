@@ -1,0 +1,67 @@
+#weather-header {
+  font-weight: 300;
+  text-align: center;
+}
+
+#weather-container {
+  width: 95%;
+  margin-top: 3%;
+  margin-left: 3%;
+}
+
+#weather-bottom-line {
+  height: 1px;
+  width: 10%;
+  background: var(--primary-color);
+  display: block;
+  margin: 1rem auto;
+}
+
+#weather-temp-line {
+  height: 1px;
+  width: 25%;
+  background: var(--primary-color);
+  display: block;
+  margin: 0 37.5%;
+  padding: none;
+  text-align: center;
+}
+
+#weather-outer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 0 20%;
+}
+
+#weather-inner-grid {
+  display: grid;
+  border: 1px black solid;
+  grid-template-rows: repeat(6, 1fr);
+  align-items: center;
+}
+
+.weather-grid-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-temp-hi {
+  margin: 6px 0 3px 0;
+  padding: 0;
+}
+
+.weather-temp-low {
+  margin: 3px;
+  padding: 0;
+}
+
+.weather-icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.weather-day {
+  margin-bottom: 8px;
+  padding: 0;
+}

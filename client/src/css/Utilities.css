@@ -1,0 +1,95 @@
+.bottom-line {
+  height: 2px;
+  width: 8rem;
+  background: var(--tertiary-color);
+  display: block;
+  margin: 1rem auto;
+}
+
+.button-general {
+  margin: 0;
+  border: black 1px solid;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: black;
+  font-weight: 100;
+  font-size: 1.1rem;
+}
+
+.button-general:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--primary-color);
+}
+
+.button-general-white {
+  margin: 0;
+  border: white 1px solid;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: white;
+  font-weight: 100;
+  font-size: 1.1rem;
+}
+.button-general-white:hover {
+  color: white;
+  text-decoration: none;
+  background-color: var(--primary-color);
+}
+
+.card {
+  border: none;
+  border-radius: 0.55rem;
+}
+
+.card-img {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.center-contents {
+  width: 60%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.display-block {
+  display: block;
+}
+
+.font-weight-100 {
+  font-weight: 100;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.font-weight-400 {
+  font-weight: 400;
+}
+
+.font-size-1_3 {
+  font-size: 1.3rem;
+}
+.font-size-1_4 {
+  font-size: 1.4rem;
+}
+.font-size-1_5 {
+  font-size: 1.5rem;
+}
+.font-size-1_6 {
+  font-size: 1.6rem;
+}
+
+.white-font {
+  color: white;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-auto {
+  width: auto;
+}

@@ -1,0 +1,19 @@
+#show-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.show-contain {
+  display: flex;
+  justify-content: center;
+}
+
+.show-item {
+  text-align: center;
+}
+
+#img-show {
+  width: 80%;
+}

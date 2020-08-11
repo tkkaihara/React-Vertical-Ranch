@@ -1,0 +1,66 @@
+.modal-wrapper__campground-add {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.modal-backdrop__campground-add {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.685);
+}
+
+.modal-box__campground-add {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 75%;
+  width: 50%;
+  overflow-y: auto;
+  background: var(--primary-grey);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 7;
+  opacity: 1;
+  padding: 3%;
+}
+
+.exit-button {
+  border: none;
+  background-color: var(--primary-grey);
+  font-size: 2rem;
+}
+
+.exit-button:focus {
+  outline: none;
+}
+
+.header__campground-add {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  align-items: center;
+}
+
+.form-container__campground-add {
+  padding-left: 5%;
+}
+
+.input__campground-add {
+  border: none;
+  border-radius: 5px;
+  padding: 2px 9px;
+  font-weight: 300;
+  color: rgb(1, 37, 92);
+  background-color: rgba(255, 255, 255, 0.575);
+}
+
+.input__campground-add:focus {
+  color: rgb(1, 37, 92);
+}

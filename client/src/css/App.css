@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
+
+@import "Booking.css";
+@import "BookingsList.css";
+@import "Calendar.css";
+@import "CampgroundAddModal.css";
+@import "CampgroundGallery.css";
+@import "CampgroundViewEditModal.css";
+@import "Contact.css";
+@import "Footer.css";
+@import "Information.css";
+@import "Jumbotron.css";
+@import "Map.css";
+@import "Navbar.css";
+@import "Scrollbar.css";
+@import "ShowPage.css";
+@import "Utilities.css";
+@import "WeatherApp.css";
+
+:root {
+  --primary-color: #78abf5;
+  --secondary-color: rgb(255, 237, 78);
+  --tertiary-color: #e87d7f;
+  --quanternary-color: #ffc07d;
+  --quinary-color: #c67dff;
+  --primary-grey: rgb(231, 231, 231);
+  --secondary-grey: rgb(237, 237, 237);
+  --alpha: 0.8;
+}
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  color: black;
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4)),
+    url(../img/john-towner-resized.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}

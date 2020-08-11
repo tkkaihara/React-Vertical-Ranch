@@ -1,0 +1,38 @@
+.booking-text {
+  vertical-align: middle;
+}
+
+.booking-text-user {
+  color: rgb(0, 89, 255);
+}
+
+.booking-text-start-date {
+  color: rgb(0, 25, 252);
+}
+
+.booking-text-end-date {
+  color: rgb(162, 0, 236);
+}
+
+.booking-outer-grid {
+  display: grid;
+  grid-template-columns: 0.27fr 0.75fr 0.25fr;
+}
+
+.booking-delete-button {
+  border: none;
+  background-color: var(--primary-grey);
+  color: rgb(238, 0, 0);
+  font-size: 2rem;
+  text-align: center;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0;
+  margin-left: 15px;
+  transform: rotate(90deg);
+}
+
+.booking-delete-button:focus {
+  outline: none;
+}
