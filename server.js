@@ -14,9 +14,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 
+// database config
+const db = process.env.MONGO_URI;
+
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
