@@ -31,7 +31,9 @@ mongoose
 app.use("/api/campgrounds", campgrounds);
 app.use("/api/campgrounds/:id/bookings", bookings);
 
-app.use("/", express.static(path.join(__dirname, "/client/build")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"));
