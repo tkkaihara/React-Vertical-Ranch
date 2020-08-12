@@ -35,7 +35,6 @@ body {
   padding: 0;
   margin: 0;
   font-weight: 300;
-  width: 100vw;
 }
 
 body {
@@ -48,4 +47,11 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+@media (max-width: 500px) {
+  html,
+  body {
+    width: 100vw;
+  }
 }
