@@ -98,15 +98,8 @@
 
 .campground-view-edit-button-confirm {
   margin: auto;
-  border: 2px solid;
-  border-image-slice: 1;
-  border-width: 2px;
-  border-image-source: linear-gradient(
-    90deg,
-    var(--primary-color),
-    var(--quinary-color)
-  );
-  padding: 0.2rem 1.5rem;
+  border: 1px solid var(--primary-color);
+  padding: 0.2rem 2rem;
   color: rgb(112, 112, 112);
   font-weight: 300;
   font-size: 1.1rem;
