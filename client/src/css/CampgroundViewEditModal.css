@@ -130,3 +130,11 @@
   text-decoration: none;
   background-color: rgb(231, 23, 23);
 }
+
+@media (max-width: 500px) {
+  .modal-box__campground-view-edit {
+    height: 85%;
+    width: 90%;
+    padding: 2%;
+  }
+}

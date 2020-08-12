@@ -19,10 +19,9 @@ export default function CampgroundGallery() {
               <h2 className="section-title">Our Campsites</h2>
               <div className="bottom-line" />
               <p className="lead">
-                Each of our campsites Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Doloremque nam earum voluptate dolorem libero
-                nobis facere ullam modi cumque nostrum voluptates hic, adipisci
-                animi! Voluptatum repudiandae unde enim officiis quis!
+                Each of our campsites are graded and have access to potable
+                water and view of Davis Peak. Other amenities include a toilet,
+                parking spots in the main camp, and a campfire.
               </p>
               <div className="gallery">
                 <div className="items">

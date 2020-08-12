@@ -16,15 +16,17 @@ export default function Contact() {
               />
             </div>
             <div className="contact-grid-item-text">
-              <p className="lead">
+              <p className="lead contact-text">
                 Vertical Ranch is owned and run by Gentry and Elaine Burgess. As
                 Kirkland, WA locals, they know that time away from the busy city
                 is sometimes a needed break.
               </p>
-              <p className="lead">
+              <br />
+              <p className="lead contact-text">
                 For any additional information please contact us by phone or
                 email:
               </p>
+              <br />
               <div className="contact-info-outer-grid">
                 <div className="contact-info-inner-grid">
                   <div className="contact-info-icon">

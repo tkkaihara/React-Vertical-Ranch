@@ -53,4 +53,21 @@
   .home-c-background {
     width: 100vw;
   }
+  .contact-grid {
+    display: block;
+  }
+  .contact-grid-item-img {
+    margin: 0%;
+    padding-bottom: 2rem;
+  }
+  .contact-img {
+    border-radius: 50%;
+    height: 200px;
+  }
+  .contact-text {
+    margin: 0 1rem;
+  }
+  .contact-info-inner-grid {
+    margin: 0 1rem;
+  }
 }
