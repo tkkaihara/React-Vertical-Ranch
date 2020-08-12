@@ -53,6 +53,7 @@ export default function BookingCalendar() {
         isDayBlocked={(day) => isDayBlocked(day)}
         minimumNights={0}
         numberOfMonths={1}
+        readOnly={true}
       />
     </div>
   );
