@@ -36,7 +36,10 @@ export default function BookingCalendar() {
       moment(bookedDay).isSame(day, "day")
     );
   }
-
+  const smallDevice = window.matchMedia("(max-width: 400px)").matches;
+  const orientation = smallDevice
+    ? "VERTICAL_ORIENTATION"
+    : "HORIZONTAL_ORIENTATION";
   return (
     <div>
       <DateRangePicker
@@ -52,6 +55,8 @@ export default function BookingCalendar() {
         onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
         isDayBlocked={(day) => isDayBlocked(day)}
         minimumNights={0}
+        orientation={orientation}
+        withPortal={smallDevice}
       />
     </div>
   );
