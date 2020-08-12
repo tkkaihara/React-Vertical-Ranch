@@ -16,5 +16,6 @@
 @media (max-width: 500px) {
   #google-map {
     margin: 15% 0;
+    padding-bottom: 75%;
   }
 }
