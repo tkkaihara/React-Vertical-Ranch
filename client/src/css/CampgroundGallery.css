@@ -106,3 +106,9 @@ a.item-text-title {
 a.item-text-title:hover {
   color: white;
 }
+
+@media (max-width: 500px) {
+  .home-a-background {
+    width: 100vw;
+  }
+}

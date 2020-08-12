@@ -46,3 +46,20 @@
     var(--quinary-color)
   );
 }
+
+@media (max-width: 500px) {
+  .header-box {
+    width: 100vw;
+    padding-top: 10rem;
+  }
+  .header-text h1 {
+    font-size: 3.5rem;
+  }
+  .header-text p {
+    font-size: 1.5rem;
+  }
+  .call-to-action {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}

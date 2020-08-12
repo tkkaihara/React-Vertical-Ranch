@@ -35,6 +35,8 @@ body {
   padding: 0;
   margin: 0;
   font-weight: 300;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -49,9 +51,9 @@ body {
   background-attachment: fixed;
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   html,
   body {
     width: 100vw;
   }
-}
+} */

@@ -48,3 +48,9 @@
   font-size: 1.65rem;
   text-align: center;
 }
+
+@media (max-width: 500px) {
+  .home-c-background {
+    width: 100vw;
+  }
+}
