@@ -64,3 +64,11 @@
 .input__campground-add:focus {
   color: rgb(1, 37, 92);
 }
+
+@media (max-width: 500px) {
+  .modal-box__campground-add {
+    height: 85%;
+    width: 90%;
+    padding: 2%;
+  }
+}
