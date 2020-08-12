@@ -43,7 +43,7 @@ body {
   flex-direction: column;
   margin: 0;
   background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4)),
-    url(../img/john-towner-resizedv2.jpg);
+    url(../img/john-towner-resizedv2-min.jpg);
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
