@@ -1,9 +1,9 @@
 #google-map {
   position: relative;
-  padding-bottom: 75%;
+  padding-bottom: 50%;
+  margin-top: 5%;
   height: 0;
   overflow: hidden;
-  margin: 5% 0;
 }
 .google-maps iframe {
   position: absolute;

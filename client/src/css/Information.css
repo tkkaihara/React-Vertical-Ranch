@@ -1,6 +1,6 @@
 .home-b-background {
   background: var(--secondary-grey);
-  padding-top: 4rem;
+  padding: 4rem 0;
 }
 
 @media (max-width: 500px) {
