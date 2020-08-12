@@ -256,148 +256,148 @@ export function CampgroundProvider({ children }) {
   );
 }
 
-// const sampleCampgrounds = [
-//   {
-//     id: uuidv4(),
-//     name: "Mossy Goat",
-//     image:
-//       "https://images.unsplash.com/photo-1533575770077-052fa2c609fc?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
-//     price: "9.00",
-//     description: "Mossy Goat is good.",
-//     bookings: [
-//       {
-//         id: uuidv4(),
-//         user: "Tyler Kaihara",
-//         date_range: ["2020-10-13", "2020-10-14"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-25", "2020-09-30"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-05", "2020-09-15"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Elmer Fudd",
-//         date_range: ["2020-09-20", "2020-09-23"],
-//       },
-//     ],
-//   },
-//   {
-//     id: uuidv4(),
-//     name: "Sweetwater Gap",
-//     image:
-//       "https://images.unsplash.com/photo-1506535995048-638aa1b62b77?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
-//     price: "9.00",
-//     description: "Sweetwater Gap is good.",
-//     bookings: [
-//       {
-//         id: uuidv4(),
-//         user: "Tyler Kaihara",
-//         date_range: ["2020-10-13", "2020-10-14"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-25", "2020-09-30"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-05", "2020-09-15"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Elmer Fudd",
-//         date_range: ["2020-09-20", "2020-09-23"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Elmer Fuddsssssss",
-//         date_range: ["2020-04-20", "2020-04-23"],
-//       },
-//     ],
-//   },
-//   {
-//     id: uuidv4(),
-//     name: "Bird's Nest",
-//     image:
-//       "https://images.unsplash.com/photo-1526491109672-74740652b963?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
-//     price: "9.00",
-//     description: "Bird's Nest is good.",
-//     bookings: [
-//       {
-//         id: uuidv4(),
-//         user: "Tyler Kaihara",
-//         date_range: ["2020-10-13", "2020-10-14"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-25", "2020-09-30"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-05", "2020-09-15"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Elmer Fudd",
-//         date_range: ["2020-09-20", "2020-09-23"],
-//       },
-//     ],
-//   },
-//   {
-//     id: uuidv4(),
-//     name: "Cocoa Bear",
-//     image:
-//       "https://images.unsplash.com/photo-1561387809-9117e4e5b52c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
-//     price: "9.00",
-//     description: "Cocoa Bear is good.",
-//     bookings: [],
-//   },
-//   {
-//     id: uuidv4(),
-//     name: "Honeymoon Hollow",
-//     image:
-//       "https://images.unsplash.com/photo-1562610744-7c427b542ccd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
-//     price: "9.00",
-//     description: "Honeymoon Hollow.",
-//     bookings: [
-//       {
-//         id: uuidv4(),
-//         user: "Tyler Kaihara",
-//         date_range: ["2020-10-13", "2020-10-14"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-25", "2020-09-30"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Tori Burgess",
-//         date_range: ["2020-09-05", "2020-09-15"],
-//       },
-//       {
-//         id: uuidv4(),
-//         user: "Elmer Fudd",
-//         date_range: ["2020-09-20", "2020-09-23"],
-//       },
-//     ],
-//   },
-//   {
-//     id: uuidv4(),
-//     name: "Big Dipper Hideaway",
-//     image:
-//       "https://images.unsplash.com/photo-1519708495087-ca1b71df408c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
-//     price: "9.00",
-//     description: "Big Dipper Hideaway is good.",
-//     bookings: [],
-//   },
-// ];
+const sampleCampgrounds = [
+  {
+    id: uuidv4(),
+    name: "Mossy Goat",
+    image:
+      "https://images.unsplash.com/photo-1533575770077-052fa2c609fc?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
+    price: "9.00",
+    description: "Mossy Goat is good.",
+    bookings: [
+      {
+        id: uuidv4(),
+        user: "Tyler Kaihara",
+        date_range: ["2020-10-13", "2020-10-14"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-25", "2020-09-30"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-05", "2020-09-15"],
+      },
+      {
+        id: uuidv4(),
+        user: "Elmer Fudd",
+        date_range: ["2020-09-20", "2020-09-23"],
+      },
+    ],
+  },
+  {
+    id: uuidv4(),
+    name: "Sweetwater Gap",
+    image:
+      "https://images.unsplash.com/photo-1506535995048-638aa1b62b77?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
+    price: "9.00",
+    description: "Sweetwater Gap is good.",
+    bookings: [
+      {
+        id: uuidv4(),
+        user: "Tyler Kaihara",
+        date_range: ["2020-10-13", "2020-10-14"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-25", "2020-09-30"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-05", "2020-09-15"],
+      },
+      {
+        id: uuidv4(),
+        user: "Elmer Fudd",
+        date_range: ["2020-09-20", "2020-09-23"],
+      },
+      {
+        id: uuidv4(),
+        user: "Elmer Fuddsssssss",
+        date_range: ["2020-04-20", "2020-04-23"],
+      },
+    ],
+  },
+  {
+    id: uuidv4(),
+    name: "Bird's Nest",
+    image:
+      "https://images.unsplash.com/photo-1526491109672-74740652b963?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
+    price: "9.00",
+    description: "Bird's Nest is good.",
+    bookings: [
+      {
+        id: uuidv4(),
+        user: "Tyler Kaihara",
+        date_range: ["2020-10-13", "2020-10-14"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-25", "2020-09-30"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-05", "2020-09-15"],
+      },
+      {
+        id: uuidv4(),
+        user: "Elmer Fudd",
+        date_range: ["2020-09-20", "2020-09-23"],
+      },
+    ],
+  },
+  {
+    id: uuidv4(),
+    name: "Cocoa Bear",
+    image:
+      "https://images.unsplash.com/photo-1561387809-9117e4e5b52c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
+    price: "9.00",
+    description: "Cocoa Bear is good.",
+    bookings: [],
+  },
+  {
+    id: uuidv4(),
+    name: "Honeymoon Hollow",
+    image:
+      "https://images.unsplash.com/photo-1562610744-7c427b542ccd?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
+    price: "9.00",
+    description: "Honeymoon Hollow.",
+    bookings: [
+      {
+        id: uuidv4(),
+        user: "Tyler Kaihara",
+        date_range: ["2020-10-13", "2020-10-14"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-25", "2020-09-30"],
+      },
+      {
+        id: uuidv4(),
+        user: "Tori Burgess",
+        date_range: ["2020-09-05", "2020-09-15"],
+      },
+      {
+        id: uuidv4(),
+        user: "Elmer Fudd",
+        date_range: ["2020-09-20", "2020-09-23"],
+      },
+    ],
+  },
+  {
+    id: uuidv4(),
+    name: "Big Dipper Hideaway",
+    image:
+      "https://images.unsplash.com/photo-1519708495087-ca1b71df408c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&ixid=eyJhcHBfaWQiOjF9",
+    price: "9.00",
+    description: "Big Dipper Hideaway is good.",
+    bookings: [],
+  },
+];

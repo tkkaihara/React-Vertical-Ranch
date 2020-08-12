@@ -111,4 +111,15 @@ a.item-text-title:hover {
   .home-a-background {
     width: 100vw;
   }
+  .item-text-title,
+  .item-text-title:hover,
+  .item-text-title:visited,
+  .item-text-title:link,
+  .item-text-title:active {
+    font-size: 2rem;
+    padding: 2%;
+  }
+  .items {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
