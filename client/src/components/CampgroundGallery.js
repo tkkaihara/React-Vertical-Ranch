@@ -1,14 +1,12 @@
 import React from "react";
 import Campground from "./Campground";
-import CampgroundAddModal from "./CampgroundAddModal";
 import { useCampground } from "../context/CampgroundContext";
+import { useUser } from "../context/UserContext";
+import AdminAddCampground from "./AdminAddCampground";
 
 export default function CampgroundGallery() {
-  const {
-    campgrounds,
-    handleOpenAddCampgroundModal,
-    modalAddRef,
-  } = useCampground();
+  const { campgrounds } = useCampground();
+  const { currentUser } = useUser();
 
   return (
     <div id="campgrounds">
@@ -30,13 +28,7 @@ export default function CampgroundGallery() {
                   })}
                 </div>
                 <div className="mt-5">
-                  <button
-                    onClick={handleOpenAddCampgroundModal}
-                    className="button-general"
-                  >
-                    Add Campground
-                  </button>
-                  <CampgroundAddModal ref={modalAddRef} />
+                  {currentUser && <AdminAddCampground />}
                 </div>
               </div>
             </section>

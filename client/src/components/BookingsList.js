@@ -12,7 +12,12 @@ export default function BookingsList() {
       <div>
         <p className="lead font-size-1_5 font-weight-300">{name} Bookings:</p>
         {selectedBookings.map((booking) => {
-          if (moment(Date.now()).isBefore(booking.date_range[1], "day")) {
+          if (
+            moment(Date.now()).isBefore(
+              moment(booking.date_range[1]).add(1, "d"),
+              "day"
+            )
+          ) {
             return <Booking key={booking._id} {...booking} />;
           } else {
             return null;

@@ -1,15 +1,15 @@
 const express = require("express"),
-  bodyParser = require("body-parser"),
   methodOverride = require("method-override"),
   mongoose = require("mongoose"),
   path = require("path"),
   app = express(),
   dotenv = require("dotenv").config(),
   campgrounds = require("./routes/api/campgrounds"),
+  users = require("./routes/api/users"),
+  auth = require("./routes/api/auth"),
   bookings = require("./routes/api/bookings");
 
 // Middleware
-app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
@@ -23,12 +23,15 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
+    useCreateIndex: true,
   })
   .then(() => console.log("Connected to MongoDB!"))
   .catch((err) => console.log(err));
 
 // Use Routes
 app.use("/api/campgrounds", campgrounds);
+app.use("/api/users", users);
+app.use("/api/auth", auth);
 app.use("/api/campgrounds/:id/bookings", bookings);
 
 if (process.env.NODE_ENV === "production") {

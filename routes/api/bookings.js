@@ -1,4 +1,5 @@
 const express = require("express"),
+  auth = require("../../middleware/auth"),
   router = express.Router({ mergeParams: true });
 
 // booking Model
@@ -19,18 +20,21 @@ router.get("/:booking_id", function (req, res) {
 });
 
 // @route POST api/campgrounds/:id/bookings
-// @desc Create a campground
+// @desc Create a booking
 // @access Public
 router.post("/", (req, res) => {
   Campground.findById(req.params.id, function (err, campground) {
     if (err) {
       res.send("Campground not found...");
     } else {
+      console.log(req.body);
       const newBooking = new Booking({
         id: req.body.id,
         user: req.body.user,
+        user_id: req.body.user_id,
         date_range: req.body.date_range,
       });
+      console.log("newbookdoksdogsdgajsingb", newBooking);
       // save booking
       newBooking.save();
       campground.bookings.push(newBooking);

@@ -7,17 +7,20 @@ import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import { CampgroundProvider } from "./context/CampgroundContext";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
   return (
     <>
-      <CampgroundProvider>
-        <div className="App">
-          <AppNavbar />
-          <Home />
-          <Footer />
-        </div>
-      </CampgroundProvider>
+      <UserProvider>
+        <CampgroundProvider>
+          <div className="App">
+            <AppNavbar />
+            <Home />
+            <Footer />
+          </div>
+        </CampgroundProvider>
+      </UserProvider>
     </>
   );
 }

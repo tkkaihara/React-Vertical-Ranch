@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import moment from "moment";
 import axios from "axios";
+import { useUser } from "./UserContext";
 
 const CampgroundContext = React.createContext();
 
@@ -9,6 +10,9 @@ export function useCampground() {
 }
 
 export function CampgroundProvider({ children }) {
+  // Importing Current User from User Context
+  const { currentUser } = useUser();
+
   // Setting Campgrounds Array State
   const [campgrounds, setCampgrounds] = useState([]);
   // Setting Selected Campground Index in Array
@@ -52,6 +56,39 @@ export function CampgroundProvider({ children }) {
     let retrievedSelectedBookings = retrieveBookings();
     setSelectedBookings(retrievedSelectedBookings);
   }, [selectedCampgroundId]);
+
+  // Check User Authentication whenever state(s) change
+  // useEffect(() => {
+  //   const campgroundData = async () => {
+  //     // await axios({
+  //     //   url: "/api/campgrounds/",
+  //     //   method: "GET",
+  //     //   data: campgrounds,
+  //     // })
+  //     //   .then((res) => {
+  //     //     if (campgrounds != null) setCampgrounds(res.data);
+  //     //     console.log("Data has been retrieved from the server");
+  //     //   })
+  //     //   .catch(() => {
+  //     //     console.log("Internal Server Error");
+  //     //   });
+  //   };
+  //   // campgroundData();
+  //   // let retrievedSelectedBookings = retrieveBookings();
+  //   // setSelectedBookings(retrievedSelectedBookings);
+  // }, [
+  //   currentUser,
+  //   handleBookingDelete,
+  //   handleCalendarBook,
+  //   handleCalendarClear,
+  //   handleCampgroundAdd,
+  //   handleCampgroundSelect,
+  //   handleCampgroundChange,
+  //   handleCampgroundDelete,
+  //   handleEditWindow,
+  //   handleOpenAddCampgroundModal,
+  //   handleOpenViewEditCampgroundModal,
+  // ]);
 
   // Handle Campground Add
   function handleCampgroundAdd(input) {
@@ -137,7 +174,7 @@ export function CampgroundProvider({ children }) {
     setSelectedCampgroundId(null);
     handleOpenViewEditCampgroundModal();
     setEditWindow(false);
-    window.location.reload();
+    // window.location.reload();
   }
   // Handles Edit Button
   function handleEditWindow() {
@@ -177,13 +214,15 @@ export function CampgroundProvider({ children }) {
     }
     const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
     const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
+    const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
     const newBooking = {
-      user: "Test Man Dev",
+      user: fullName,
+      user_id: currentUser.id,
       date_range: [formattedStartDate, formattedEndDate],
     };
+    console.log(newBooking);
     const editedSelectedCampground = selectedCampground;
     editedSelectedCampground.bookings.push(newBooking);
-    // This is working on POSTMAN
     axios({
       url: `/api/campgrounds/${editedSelectedCampground._id}/bookings`,
       method: "POST",
@@ -195,7 +234,6 @@ export function CampgroundProvider({ children }) {
       .catch(() => {
         console.log("Internal Server Error, campground booking not added");
       });
-    // handleCampgroundChange(selectedCampgroundIndex, editedSelectedCampground);
     handleCalendarClear();
   }
   // Handles Deleting Booking

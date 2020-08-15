@@ -1,6 +1,7 @@
 import React from "react";
 import { useCampground } from "../context/CampgroundContext";
 import BookingCalendar from "./BookingCalendar";
+import { useUser } from "../context/UserContext";
 
 export default function CampgroundView() {
   const {
@@ -12,23 +13,29 @@ export default function CampgroundView() {
     handleEditWindow,
   } = useCampground();
 
+  const { currentUser } = useUser();
+
   return (
     <>
       <div className="header__campground-view-edit">
         <div className="campground-view-header">
           <h1 className="font-weight-300">{selectedCampground.name}</h1>
-          <button
-            className="campground-view-edit-button"
-            onClick={handleEditWindow}
-          >
-            Edit
-          </button>
-          <button
-            className="campground-view-button-delete"
-            onClick={() => handleCampgroundDelete(selectedCampgroundId)}
-          >
-            Delete
-          </button>
+          {currentUser.email && currentUser.email === "gr.eb@frontier.com" && (
+            <>
+              <button
+                className="campground-view-edit-button"
+                onClick={handleEditWindow}
+              >
+                Edit
+              </button>
+              <button
+                className="campground-view-button-delete"
+                onClick={() => handleCampgroundDelete(selectedCampgroundId)}
+              >
+                Delete
+              </button>
+            </>
+          )}
         </div>
         <button onClick={handleCalendarClear} className="exit-button-view-edit">
           &times;

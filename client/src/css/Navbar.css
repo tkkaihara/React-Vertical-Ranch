@@ -45,7 +45,7 @@
 
 .navbar-brand {
   padding: 0 1rem 0 1rem;
-  margin-left: 7%;
+  margin-left: 5%;
 }
 
 .navbar-logo {
@@ -63,4 +63,43 @@
 
 .navbar-toggler {
   margin-right: 1rem;
+}
+
+/* Auth */
+.navbar-right-push {
+  content: "";
+  margin-right: 5%;
+}
+.main-nav a.auth-link:hover {
+  border-color: white;
+  color: var(--primary-color);
+}
+
+.user-icon {
+  margin-right: 0.5rem;
+  font-size: 1.05rem;
+}
+
+.navbar-confirm {
+  margin: auto;
+  border: 1px solid var(--primary-color);
+  padding: 0.2rem 2rem;
+  color: rgb(112, 112, 112);
+  font-weight: 300;
+  font-size: 1.1rem;
+}
+
+.navbar-confirm:hover {
+  color: rgb(245, 245, 245);
+  text-decoration: none;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--quinary-color)
+  );
+}
+
+.navbar-confirm-button-container {
+  margin-top: 9%;
+  text-align: center;
 }
