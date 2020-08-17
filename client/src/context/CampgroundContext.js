@@ -11,7 +11,7 @@ export function useCampground() {
 
 export function CampgroundProvider({ children }) {
   // Importing Current User from User Context
-  const { currentUser } = useUser();
+  const { currentUser, handleAuth } = useUser();
 
   // Setting Campgrounds Array State
   const [campgrounds, setCampgrounds] = useState([]);
@@ -58,37 +58,22 @@ export function CampgroundProvider({ children }) {
   }, [selectedCampgroundId]);
 
   // Check User Authentication whenever state(s) change
-  // useEffect(() => {
-  //   const campgroundData = async () => {
-  //     // await axios({
-  //     //   url: "/api/campgrounds/",
-  //     //   method: "GET",
-  //     //   data: campgrounds,
-  //     // })
-  //     //   .then((res) => {
-  //     //     if (campgrounds != null) setCampgrounds(res.data);
-  //     //     console.log("Data has been retrieved from the server");
-  //     //   })
-  //     //   .catch(() => {
-  //     //     console.log("Internal Server Error");
-  //     //   });
-  //   };
-  //   // campgroundData();
-  //   // let retrievedSelectedBookings = retrieveBookings();
-  //   // setSelectedBookings(retrievedSelectedBookings);
-  // }, [
-  //   currentUser,
-  //   handleBookingDelete,
-  //   handleCalendarBook,
-  //   handleCalendarClear,
-  //   handleCampgroundAdd,
-  //   handleCampgroundSelect,
-  //   handleCampgroundChange,
-  //   handleCampgroundDelete,
-  //   handleEditWindow,
-  //   handleOpenAddCampgroundModal,
-  //   handleOpenViewEditCampgroundModal,
-  // ]);
+  useEffect(() => {
+    console.log("check if user token is valid, if not then run handleLogout");
+    handleAuth();
+  }, [
+    currentUser,
+    handleBookingDelete,
+    handleCalendarBook,
+    handleCalendarClear,
+    handleCampgroundAdd,
+    handleCampgroundSelect,
+    handleCampgroundChange,
+    handleCampgroundDelete,
+    handleEditWindow,
+    handleOpenAddCampgroundModal,
+    handleOpenViewEditCampgroundModal,
+  ]);
 
   // Handle Campground Add
   function handleCampgroundAdd(input) {
@@ -98,10 +83,14 @@ export function CampgroundProvider({ children }) {
       price: input.price,
       description: input.description,
     };
+    const currentToken = localStorage.getItem("token");
     axios({
       url: "/api/campgrounds/",
       method: "POST",
       data: newCampground,
+      headers: {
+        "x-auth-token": `${currentToken}`,
+      },
     })
       .then(() => {
         console.log("New campground has been sent to the server");
@@ -124,10 +113,14 @@ export function CampgroundProvider({ children }) {
     const index = newCampgrounds.findIndex((c) => c._id === id);
     newCampgrounds[index] = campground;
     setCampgrounds(newCampgrounds);
+    const currentToken = localStorage.getItem("token");
     axios({
       url: `/api/campgrounds/${id}`,
       method: "PUT",
       data: campground,
+      headers: {
+        "x-auth-token": `${currentToken}`,
+      },
     })
       .then(() => {
         console.log("Campground updated");
@@ -138,15 +131,19 @@ export function CampgroundProvider({ children }) {
   }
   // Handle Campground Delete
   function handleCampgroundDelete(selectedCampgroundId) {
-    // setCampgrounds(
-    //   campgrounds.filter(
-    //     (campground) => campground._id !== selectedCampgroundId
-    //   )
-    // );
+    setCampgrounds(
+      campgrounds.filter(
+        (campground) => campground._id !== selectedCampgroundId
+      )
+    );
+    const currentToken = localStorage.getItem("token");
     axios({
       url: `/api/campgrounds/${selectedCampgroundId}`,
       method: "DELETE",
       data: selectedCampground,
+      headers: {
+        "x-auth-token": `${currentToken}`,
+      },
     })
       .then(() => {
         console.log("Campground deleted from the server");
@@ -155,7 +152,9 @@ export function CampgroundProvider({ children }) {
         console.log("Internal Server Error, campground not deleted");
       });
     handleOpenViewEditCampgroundModal();
+    setSelectedCampgroundIndex(undefined);
     setSelectedCampgroundId(undefined);
+    selectedCampground = null;
     setEditWindow(false);
   }
   // Modals Opening/Closing
@@ -185,6 +184,7 @@ export function CampgroundProvider({ children }) {
     let retrievedBookings = [];
     if (
       selectedCampgroundId !== null &&
+      selectedCampground.bookings &&
       selectedCampground.bookings !== undefined &&
       selectedCampground.bookings !== null
     ) {
@@ -211,29 +211,36 @@ export function CampgroundProvider({ children }) {
     if ((startDate || endDate) === null) {
       handleOpenViewEditCampgroundModal();
       return null;
-    }
-    const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
-    const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
-    const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
-    const newBooking = {
-      user: fullName,
-      user_id: currentUser.id,
-      date_range: [formattedStartDate, formattedEndDate],
-    };
-    console.log(newBooking);
-    const editedSelectedCampground = selectedCampground;
-    editedSelectedCampground.bookings.push(newBooking);
-    axios({
-      url: `/api/campgrounds/${editedSelectedCampground._id}/bookings`,
-      method: "POST",
-      data: newBooking,
-    })
-      .then(() => {
-        console.log("Campground booking added");
+    } else if (currentUser) {
+      const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
+      const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
+      const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
+      const newBooking = {
+        user: fullName,
+        user_id: currentUser.id,
+        date_range: [formattedStartDate, formattedEndDate],
+      };
+      console.log(newBooking);
+      const editedSelectedCampground = selectedCampground;
+      editedSelectedCampground.bookings.push(newBooking);
+      const currentToken = localStorage.getItem("token");
+      axios({
+        url: `/api/campgrounds/${editedSelectedCampground._id}/bookings`,
+        method: "POST",
+        data: newBooking,
+        headers: {
+          "x-auth-token": `${currentToken}`,
+        },
       })
-      .catch(() => {
-        console.log("Internal Server Error, campground booking not added");
-      });
+        .then(() => {
+          console.log("Campground booking added");
+        })
+        .catch(() => {
+          console.log("Internal Server Error, campground booking not added");
+        });
+    } else {
+      console.log("Please login to book a campground...");
+    }
     handleCalendarClear();
   }
   // Handles Deleting Booking
@@ -247,10 +254,14 @@ export function CampgroundProvider({ children }) {
     const editedSelectedCampground = selectedCampground;
     setSelectedBookings(newBookingsArray);
     editedSelectedCampground.bookings = newBookingsIdArray;
+    const currentToken = localStorage.getItem("token");
     axios({
       url: `/api/campgrounds/${selectedCampground._id}/bookings/${id}`,
       method: "DELETE",
       data: newBookingsIdArray,
+      headers: {
+        "x-auth-token": `${currentToken}`,
+      },
     })
       .then(() => {
         console.log("Campground booking deleted from the server");

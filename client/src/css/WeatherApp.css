@@ -70,6 +70,9 @@
   #weather-outer-grid {
     margin: 0;
   }
+  .weather-day {
+    font-size: 0.9rem;
+  }
 }
 @media (max-width: 800px) and (min-width: 501px) {
   #weather-outer-grid {

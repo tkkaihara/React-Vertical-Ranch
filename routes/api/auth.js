@@ -6,9 +6,7 @@ const express = require("express"),
   router = express.Router({ mergeParams: true });
 
 // User Model
-const User = require("../../models/User"),
-  Booking = require("../../models/Booking"),
-  Campground = require("../../models/Campground");
+const User = require("../../models/User");
 
 // @route POST api/auth
 // @desc Auth user

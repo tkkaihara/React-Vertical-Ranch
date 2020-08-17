@@ -2,15 +2,13 @@ import React from "react";
 import { useCampground } from "../context/CampgroundContext";
 import BookingCalendar from "./BookingCalendar";
 import { useUser } from "../context/UserContext";
+import AdminEditDeleteCampground from "../components/AdminEditDeleteCampground";
 
 export default function CampgroundView() {
   const {
     selectedCampground,
-    selectedCampgroundId,
     handleCalendarBook,
     handleCalendarClear,
-    handleCampgroundDelete,
-    handleEditWindow,
   } = useCampground();
 
   const { currentUser } = useUser();
@@ -20,22 +18,7 @@ export default function CampgroundView() {
       <div className="header__campground-view-edit">
         <div className="campground-view-header">
           <h1 className="font-weight-300">{selectedCampground.name}</h1>
-          {currentUser.email && currentUser.email === "gr.eb@frontier.com" && (
-            <>
-              <button
-                className="campground-view-edit-button"
-                onClick={handleEditWindow}
-              >
-                Edit
-              </button>
-              <button
-                className="campground-view-button-delete"
-                onClick={() => handleCampgroundDelete(selectedCampgroundId)}
-              >
-                Delete
-              </button>
-            </>
-          )}
+          {currentUser && <AdminEditDeleteCampground />}
         </div>
         <button onClick={handleCalendarClear} className="exit-button-view-edit">
           &times;

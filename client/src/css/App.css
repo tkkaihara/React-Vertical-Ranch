@@ -47,8 +47,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.4)),
-    url(../img/john-towner-resizedv2-min.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2)),
+    url("https://images.unsplash.com/photo-1469212044023-0e55b4b9745a?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1920&h=1080&fit=crop&ixid=eyJhcHBfaWQiOjF9");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;

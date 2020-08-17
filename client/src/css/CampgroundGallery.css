@@ -122,4 +122,12 @@ a.item-text-title:hover {
   .items {
     grid-template-columns: repeat(2, 1fr);
   }
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 100;
+  }
+  .lead {
+    font-size: 1rem;
+    padding: 0 4%;
+  }
 }

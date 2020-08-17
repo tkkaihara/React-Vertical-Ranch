@@ -1,4 +1,5 @@
 const express = require("express"),
+  auth = require("../../middleware/auth"),
   router = express.Router();
 
 // Campground Model
@@ -20,7 +21,7 @@ router.get("/", (req, res) => {
 // @route POST api/campgrounds
 // @desc Create a campground
 // @access Private
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   const newCampground = new Campground({
     name: req.body.name,
     image: req.body.image,
@@ -41,7 +42,7 @@ router.post("/", (req, res) => {
 // @route PUT api/campgrounds/:id
 // @desc Update a campground
 // @access Private
-router.put("/:id", (req, res) => {
+router.put("/:id", auth, (req, res) => {
   Campground.findByIdAndUpdate(req.params.id, { $set: req.body }, function (
     err,
     result
@@ -57,19 +58,21 @@ router.put("/:id", (req, res) => {
 // @route DELETE api/campgrounds/:id
 // @desc Delete a campground
 // @access Private
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", auth, (req, res, next) => {
   Campground.findById(req.params.id, (err, campground) => {
-    Booking.remove(
-      {
-        "_id": {
-          $in: campground.bookings,
+    if (campground.bookings) {
+      Booking.deleteMany(
+        {
+          "_id": {
+            $in: campground.bookings,
+          },
         },
-      },
-      function (err) {
-        if (err) return next(err);
-        campground.remove();
-      }
-    );
+        function (err) {
+          if (err) return next(err);
+          campground.remove();
+        }
+      );
+    }
   });
 });
 

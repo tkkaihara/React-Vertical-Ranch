@@ -22,7 +22,7 @@ router.get("/:booking_id", function (req, res) {
 // @route POST api/campgrounds/:id/bookings
 // @desc Create a booking
 // @access Public
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   Campground.findById(req.params.id, function (err, campground) {
     if (err) {
       res.send("Campground not found...");
@@ -47,7 +47,7 @@ router.post("/", (req, res) => {
 // @route DELETE api/campgrounds/:id/bookings/:booking_id
 // @desc Delete a booking
 // @access Private
-router.delete("/:booking_id", async (req, res) => {
+router.delete("/:booking_id", auth, async (req, res) => {
   Booking.findByIdAndRemove(req.params.booking_id, function (err) {
     if (err) {
       res.send("Booking not deleted from booking collection.");
