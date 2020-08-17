@@ -5,9 +5,7 @@ const express = require("express"),
   router = express.Router({ mergeParams: true });
 
 // User Model
-const User = require("../../models/User"),
-  Booking = require("../../models/Booking"),
-  Campground = require("../../models/Campground");
+const User = require("../../models/User");
 
 // @route POST api/users
 // @desc Register new user
@@ -54,6 +52,7 @@ router.post("/", function (req, res) {
                   last_name: user.last_name,
                   email: user.email,
                 },
+                msg: "You have been successfully registered!",
               });
             }
           );

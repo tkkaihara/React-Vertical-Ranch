@@ -11,7 +11,7 @@ export default function AppNavbarLoggedIn() {
     <>
       <NavItem>
         <Link to="#" className="auth-link">
-          <i class="far fa-user user-icon"></i> {currentUserName}
+          <i className="far fa-user user-icon"></i> {currentUserName}
         </Link>
       </NavItem>
       <NavItem>

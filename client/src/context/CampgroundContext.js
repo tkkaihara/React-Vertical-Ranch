@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import moment from "moment";
 import axios from "axios";
 import { useUser } from "./UserContext";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CampgroundContext = React.createContext();
 
@@ -59,7 +61,6 @@ export function CampgroundProvider({ children }) {
 
   // Check User Authentication whenever state(s) change
   useEffect(() => {
-    console.log("check if user token is valid, if not then run handleLogout");
     handleAuth();
   }, [
     currentUser,
@@ -93,10 +94,26 @@ export function CampgroundProvider({ children }) {
       },
     })
       .then(() => {
-        console.log("New campground has been sent to the server");
+        toast.success("New campground added!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch(() => {
-        console.log("Internal Server Error, new campground not saved");
+        toast.error("Error, campground not added...", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     setCampgrounds([...campgrounds, newCampground]);
     handleOpenAddCampgroundModal();
@@ -123,10 +140,18 @@ export function CampgroundProvider({ children }) {
       },
     })
       .then(() => {
-        console.log("Campground updated");
+        console.log("Campground updated!");
       })
       .catch(() => {
-        console.log("Internal Server Error, campground not updated");
+        toast.error("Error, campground not updated...", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }
   // Handle Campground Delete
@@ -146,10 +171,31 @@ export function CampgroundProvider({ children }) {
       },
     })
       .then(() => {
-        console.log("Campground deleted from the server");
+        toast.success("Campground deleted!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log("Before", selectedCampgroundIndex);
+        setSelectedCampgroundIndex(undefined);
+        setSelectedCampgroundId(undefined);
+        selectedCampground = null;
+        console.log("After", selectedCampgroundIndex);
       })
       .catch(() => {
-        console.log("Internal Server Error, campground not deleted");
+        toast.error("Error, campground not deleted...", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     handleOpenViewEditCampgroundModal();
     setSelectedCampgroundIndex(undefined);
@@ -182,6 +228,7 @@ export function CampgroundProvider({ children }) {
   // Retrieves Bookings
   function retrieveBookings() {
     let retrievedBookings = [];
+
     if (
       selectedCampgroundId !== null &&
       selectedCampground.bookings &&
@@ -233,13 +280,40 @@ export function CampgroundProvider({ children }) {
         },
       })
         .then(() => {
-          console.log("Campground booking added");
+          toast.success("Your campground is booked!", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         })
         .catch(() => {
-          console.log("Internal Server Error, campground booking not added");
+          toast.error(
+            "Hmmm, something went wrong. Please try booking again...",
+            {
+              position: "bottom-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
         });
     } else {
-      console.log("Please login to book a campground...");
+      toast.error("Please login to book a campground!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
     handleCalendarClear();
   }
@@ -265,9 +339,27 @@ export function CampgroundProvider({ children }) {
     })
       .then(() => {
         console.log("Campground booking deleted from the server");
+        toast.success("Campground booking deleted!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch(() => {
         console.log("Internal Server Error, campground booking not deleted");
+        toast.error("Error, campground booking not deleted...", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }
 

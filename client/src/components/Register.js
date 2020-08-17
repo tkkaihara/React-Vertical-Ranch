@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 
 export default function Register() {
   const { handleAuthModal, handleRegister } = useUser();
-
   const { handleSubmit, register } = useForm();
 
   return (
@@ -17,6 +16,7 @@ export default function Register() {
           <button onClick={handleAuthModal} className="exit-button-view-edit">
             &times;
           </button>
+
           <form onSubmit={handleSubmit(handleRegister)} className="ml-3">
             <h6 className="pt-3">First Name</h6>
             <input

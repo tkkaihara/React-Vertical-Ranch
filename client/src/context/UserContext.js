@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import axios from "axios";
-import jwt from "jsonwebtoken";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const UserContext = React.createContext();
 
 export function useUser() {
@@ -25,7 +27,7 @@ export function UserProvider({ children }) {
     modalAuthRef.current.toggleModal();
   }
   // User Registration
-  function handleRegister(input) {
+  function handleRegister(input, e) {
     const newUser = {
       first_name: input.first_name,
       last_name: input.last_name,
@@ -42,17 +44,32 @@ export function UserProvider({ children }) {
       },
     })
       .then((res) => {
-        console.log("New user has been sent to the server");
         setToken(res.data.token);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("User", JSON.stringify(res.data.user));
         setCurrentUser(JSON.parse(localStorage.getItem("User")));
-        console.log("User has been successfully logged in.");
+        toast.success("You have been successfully registered!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
-      .catch(() => {
-        console.log("Internal Server Error, new user not saved");
+      .catch((res) => {
+        toast.error(res.response.data.msg, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
-
+    e.preventDefault();
     handleAuthModal();
   }
 
@@ -75,12 +92,29 @@ export function UserProvider({ children }) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("User", JSON.stringify(res.data.user));
         setCurrentUser(JSON.parse(localStorage.getItem("User")));
-        console.log("User has been successfully logged in.");
+        handleAuthModal();
+        toast.success("You been successfully logged in!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       })
       .catch(() => {
-        console.log("Internal Server Error, user not logged in.");
+        const notifyError = () =>
+          toast.error("Invalid credentials!", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
       });
-    handleAuthModal();
   }
 
   function handleLogout() {
@@ -88,6 +122,15 @@ export function UserProvider({ children }) {
     localStorage.removeItem("User");
     setToken(null);
     setCurrentUser(null);
+    toast.success("You have been successfully logged out!", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   }
 
   function handleAuth() {
@@ -109,7 +152,15 @@ export function UserProvider({ children }) {
         })
         .catch(() => {
           handleLogout();
-          return console.log("Token expired, please login...");
+          toast.error("Session expired, please login...", {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         });
     }
   }

@@ -8,6 +8,8 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import { CampgroundProvider } from "./context/CampgroundContext";
 import { UserProvider } from "./context/UserContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -16,6 +18,7 @@ function App() {
         <CampgroundProvider>
           <div className="App">
             <AppNavbar />
+            <ToastContainer limit={2} />
             <Home />
             <Footer />
           </div>
