@@ -63,7 +63,7 @@
 
 .weather-day {
   margin-bottom: 8px;
-  padding: 0;
+  padding: 0 3px;
 }
 
 @media (max-width: 500px) {

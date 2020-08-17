@@ -13,6 +13,12 @@ export default function AppNavbar() {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  function mobileToggle() {
+    if (window.outerWidth <= 991) {
+      toggle();
+    }
+  }
+
   return (
     <>
       <Navbar scrolling="true" dark expand="lg" className="main-nav">
@@ -28,28 +34,48 @@ export default function AppNavbar() {
         <Collapse isOpen={isOpen} navbar className="white-font">
           <Nav className="mr-auto navbar" navbar>
             <NavItem>
-              <Link to="landing" smooth={true} duration={800}>
+              <Link
+                to="landing"
+                onClick={mobileToggle}
+                smooth={true}
+                duration={800}
+              >
                 Home
               </Link>
             </NavItem>
             <NavItem>
-              <Link to="campgrounds" smooth={true} duration={800}>
+              <Link
+                to="campgrounds"
+                onClick={mobileToggle}
+                smooth={true}
+                duration={800}
+              >
                 Campgrounds
               </Link>
             </NavItem>
             <NavItem>
-              <Link to="information" smooth={true} duration={800}>
+              <Link
+                to="information"
+                onClick={mobileToggle}
+                smooth={true}
+                duration={800}
+              >
                 Information
               </Link>
             </NavItem>
             <NavItem>
-              <Link to="contact" smooth={true} duration={800}>
+              <Link
+                to="contact"
+                onClick={mobileToggle}
+                smooth={true}
+                duration={800}
+              >
                 Contact
               </Link>
             </NavItem>
           </Nav>
           <Nav className="justify-content-end navbar" navbar>
-            {!currentUser && <AppNavbarRegisterLogin />}
+            {!currentUser && <AppNavbarRegisterLogin toggle={mobileToggle} />}
             {currentUser && <AppNavbarLoggedIn />}
           </Nav>
           <div className="navbar-right-push"></div>

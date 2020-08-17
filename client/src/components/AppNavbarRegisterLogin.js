@@ -3,7 +3,8 @@ import { Link } from "react-scroll";
 import { useUser } from "../context/UserContext";
 import { NavItem } from "reactstrap";
 
-export default function AppNavbarRegisterLogin() {
+export default function AppNavbarRegisterLogin(props) {
+  const { toggle } = props;
   const { handleAuthModal, setIsRegisterWindow } = useUser();
 
   return (
@@ -12,6 +13,7 @@ export default function AppNavbarRegisterLogin() {
         <Link
           to="#"
           onClick={() => {
+            toggle();
             handleAuthModal();
             setIsRegisterWindow(false);
           }}
@@ -24,6 +26,7 @@ export default function AppNavbarRegisterLogin() {
         <Link
           to="#"
           onClick={() => {
+            toggle();
             handleAuthModal();
             setIsRegisterWindow(true);
           }}

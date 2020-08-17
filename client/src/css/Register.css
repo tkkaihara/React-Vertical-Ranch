@@ -12,3 +12,27 @@
   opacity: 1;
   padding: 3%;
 }
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .modal-box__campground-register {
+    height: 33%;
+    width: 30%;
+    padding: 2%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .modal-box__campground-register {
+    height: 45%;
+    width: 35%;
+    padding: 2%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-box__campground-register {
+    height: 70%;
+    width: 90%;
+    padding: 2%;
+  }
+}

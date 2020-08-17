@@ -13,10 +13,26 @@
   padding: 3%;
 }
 
-/* @media (max-width: 500px) {
+@media (min-width: 769px) and (max-width: 1100px) {
   .modal-box__campground-login {
-    height: 85%;
+    height: 23%;
+    width: 30%;
+    padding: 2%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .modal-box__campground-login {
+    height: 30%;
+    width: 35%;
+    padding: 2%;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-box__campground-login {
+    height: 50%;
     width: 90%;
     padding: 2%;
   }
-} */
+}
