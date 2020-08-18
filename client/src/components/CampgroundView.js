@@ -26,7 +26,7 @@ export default function CampgroundView() {
       </div>
       <div className="form-container__campground-add">
         <p className="mt-2 font-weight-300 font-size-1_3">
-          Price: ${selectedCampground.price}
+          Price/Night: ${selectedCampground.price}
         </p>
         <p className="mt-2 font-weight-300 font-size-1_3">
           Description: {selectedCampground.description}

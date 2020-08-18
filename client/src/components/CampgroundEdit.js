@@ -64,7 +64,7 @@ export default function CampgroundEdit() {
             onChange={(e) => handleChange({ image: e.target.value })}
             className="input__campground-add"
           />
-          <h6 className="pt-3">Price</h6>
+          <h6 className="pt-3">Price/Night</h6>
           <input
             ref={register({ required: "Required" })}
             type="text"

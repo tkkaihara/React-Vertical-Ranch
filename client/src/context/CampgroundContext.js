@@ -156,6 +156,7 @@ export function CampgroundProvider({ children }) {
   }
   // Handle Campground Delete
   function handleCampgroundDelete(selectedCampgroundId) {
+    setSelectedBookings(null);
     setCampgrounds(
       campgrounds.filter(
         (campground) => campground._id !== selectedCampgroundId
@@ -171,20 +172,8 @@ export function CampgroundProvider({ children }) {
       },
     })
       .then(() => {
-        toast.success("Campground deleted!", {
-          position: "bottom-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log("Before", selectedCampgroundIndex);
         setSelectedCampgroundIndex(undefined);
         setSelectedCampgroundId(undefined);
-        selectedCampground = null;
-        console.log("After", selectedCampgroundIndex);
       })
       .catch(() => {
         toast.error("Error, campground not deleted...", {
@@ -200,8 +189,8 @@ export function CampgroundProvider({ children }) {
     handleOpenViewEditCampgroundModal();
     setSelectedCampgroundIndex(undefined);
     setSelectedCampgroundId(undefined);
-    selectedCampground = null;
     setEditWindow(false);
+    window.location.reload();
   }
   // Modals Opening/Closing
   function handleOpenAddCampgroundModal() {
@@ -231,6 +220,7 @@ export function CampgroundProvider({ children }) {
 
     if (
       selectedCampgroundId !== null &&
+      selectedCampgroundIndex !== null &&
       selectedCampground.bookings &&
       selectedCampground.bookings !== undefined &&
       selectedCampground.bookings !== null
