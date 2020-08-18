@@ -245,6 +245,20 @@ export function CampgroundProvider({ children }) {
 
   // Handles Book Button
   function handleCalendarBook() {
+    let isOverlapped = false;
+    for (let i = 0; i < selectedBookings.length; i++) {
+      if (
+        (moment(startDate).isBefore(selectedBookings[i].date_range[0]) &&
+          moment(endDate).isBefore(selectedBookings[i].date_range[0])) ||
+        (moment(startDate).isAfter(selectedBookings[i].date_range[1]) &&
+          moment(endDate).isAfter(selectedBookings[i].date_range[1]))
+      ) {
+        isOverlapped = false;
+      } else {
+        isOverlapped = true;
+        break;
+      }
+    }
     if (!currentUser) {
       toast.error("Please login to book a campground!", {
         position: "bottom-right",
@@ -255,7 +269,12 @@ export function CampgroundProvider({ children }) {
         draggable: true,
         progress: undefined,
       });
-    } else if (startDate === null || endDate === null) {
+    } else if (
+      startDate === null ||
+      endDate === null ||
+      startDate === "Invalid date" ||
+      endDate === "Invalid date"
+    ) {
       toast.error("Please enter both start and end dates...", {
         position: "bottom-right",
         autoClose: 2000,
@@ -265,6 +284,19 @@ export function CampgroundProvider({ children }) {
         draggable: true,
         progress: undefined,
       });
+    } else if (isOverlapped === true) {
+      return toast.error(
+        "You cannot overlap another booking, please choose valid dates...",
+        {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     } else {
       const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
       const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
