@@ -245,10 +245,27 @@ export function CampgroundProvider({ children }) {
 
   // Handles Book Button
   function handleCalendarBook() {
-    if ((startDate || endDate) === null) {
-      handleOpenViewEditCampgroundModal();
-      return null;
-    } else if (currentUser) {
+    if (!currentUser) {
+      toast.error("Please login to book a campground!", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else if (startDate === null || endDate === null) {
+      toast.error("Please enter both start and end dates...", {
+        position: "bottom-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
       const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
       const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
       const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
@@ -294,16 +311,6 @@ export function CampgroundProvider({ children }) {
             }
           );
         });
-    } else {
-      toast.error("Please login to book a campground!", {
-        position: "bottom-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
     }
     handleCalendarClear();
   }
