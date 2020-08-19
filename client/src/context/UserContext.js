@@ -31,7 +31,7 @@ export function UserProvider({ children }) {
     const newUser = {
       first_name: input.first_name,
       last_name: input.last_name,
-      email: input.email,
+      email: input.email.toLowerCase(),
       password: input.password,
     };
     const currentToken = localStorage.getItem("token");
@@ -75,7 +75,7 @@ export function UserProvider({ children }) {
 
   function handleLogin(input) {
     const loginCredentials = {
-      email: input.email,
+      email: input.email.toLowerCase(),
       password: input.password,
     };
     const currentToken = localStorage.getItem("token");
