@@ -12,8 +12,7 @@ const Booking = require("../../models/Booking"),
 router.get("/:booking_id", function (req, res) {
   // find campground by id
   Booking.findById(req.params.booking_id)
-    .then((booking) => res.json(booking))
-    .then((booking) => console.log(booking))
+    .then((booking) => res.json(booking.toObject()))
     .catch((error) => {
       console.log("error: ", error);
     });
@@ -34,7 +33,6 @@ router.post("/", auth, (req, res) => {
         user_id: req.body.user_id,
         date_range: req.body.date_range,
       });
-      console.log("newbookdoksdogsdgajsingb", newBooking);
       // save booking
       newBooking.save();
       campground.bookings.push(newBooking);

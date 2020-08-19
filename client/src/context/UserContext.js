@@ -136,7 +136,7 @@ export function UserProvider({ children }) {
     const currentToken = localStorage.getItem("token");
     // Check for token
     if (!token) {
-      console.log("Please login or register...");
+      return null;
     } else {
       // Verify token
       axios({
@@ -147,7 +147,7 @@ export function UserProvider({ children }) {
         },
       })
         .then(() => {
-          return console.log("User token is valid...");
+          return null;
         })
         .catch(() => {
           handleLogout();

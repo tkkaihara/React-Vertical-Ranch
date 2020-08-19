@@ -47,8 +47,9 @@ export function CampgroundProvider({ children }) {
         data: campgrounds,
       })
         .then((res) => {
-          if (campgrounds != null) setCampgrounds(res.data);
-          console.log("Data has been retrieved from the server");
+          if (campgrounds != null) {
+            setCampgrounds(res.data);
+          }
         })
         .catch(() => {
           console.log("Internal Server Error");
@@ -275,7 +276,7 @@ export function CampgroundProvider({ children }) {
       startDate === "Invalid date" ||
       endDate === "Invalid date"
     ) {
-      toast.error("Please enter both start and end dates...", {
+      return toast.error("Please enter both start and end dates...", {
         position: "bottom-right",
         autoClose: 2000,
         hideProgressBar: false,
