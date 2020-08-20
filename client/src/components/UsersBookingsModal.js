@@ -17,12 +17,12 @@ const UsersBookingsModal = forwardRef((props, ref) => {
 
   if (usersBookingsDisplay) {
     return ReactDOM.createPortal(
-      <div className="modal-wrapper__campground-view-edit">
+      <div className="modal-wrapper__user-bookings">
         <div
           onClick={toggleUsersBookingsDisplay}
-          className="modal-backdrop__campground-view-edit"
+          className="modal-backdrop__user-bookings"
         />
-        <div className="modal-box__campground-view-edit">
+        <div className="modal-box__user-bookings">
           <UsersBookingsList />
         </div>
       </div>,

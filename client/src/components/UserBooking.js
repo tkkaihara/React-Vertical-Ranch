@@ -10,31 +10,37 @@ export default function UserBooking(props) {
   const endDate = moment(date_range[1]).format("MMM Do YYYY");
 
   return (
-    <div className="ml-5">
-      <div className="lead">
-        <div className="booking-outer-grid">
-          <div>
-            <span className="booking-text-user">{campName}</span>:
-          </div>
-          <div>
-            <span className="booking-text-start-date">{startDate}</span> -{" "}
-            <span className="booking-text-end-date">{endDate}</span>
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                handleBookingDeleteUser(_id, campground);
-                campground.camp_bookings = campground.camp_bookings.filter(
-                  (booking) => booking._id !== _id
-                );
-              }}
-              className="booking-delete-button"
-            >
-              &times;
-            </button>
-          </div>
+    <>
+      <div className="user-booking-outer-grid">
+        <div>
+          <span className="user-booking-text-user user-booking-text">
+            {campName}
+          </span>
+          :
+        </div>
+        <div>
+          <span className="user-booking-text-start-date user-booking-text">
+            {startDate}
+          </span>{" "}
+          -{" "}
+          <span className="user-booking-text-end-date user-booking-text">
+            {endDate}
+          </span>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              handleBookingDeleteUser(_id, campground);
+              campground.camp_bookings = campground.camp_bookings.filter(
+                (booking) => booking._id !== _id
+              );
+            }}
+            className="booking-delete-button"
+          >
+            &times;
+          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }

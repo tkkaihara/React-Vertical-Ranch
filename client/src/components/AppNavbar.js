@@ -17,14 +17,14 @@ export default function AppNavbar() {
   const toggle = () => setIsOpen(!isOpen);
 
   function mobileToggle() {
-    if (window.outerWidth <= 991) {
+    if (window.outerWidth <= 1199) {
       toggle();
     }
   }
 
   return (
     <>
-      <Navbar scrolling="true" dark expand="lg" className="main-nav">
+      <Navbar scrolling="true" dark expand="xl" className="main-nav">
         <Link
           to="landing"
           smooth={true}

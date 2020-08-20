@@ -1,0 +1,126 @@
+.modal-wrapper__user-bookings {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.modal-backdrop__user-bookings {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.685);
+}
+
+.modal-box__user-bookings {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 83%;
+  width: 50%;
+  overflow-y: auto;
+  background: var(--primary-grey);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 7;
+  opacity: 1;
+  padding: 3%;
+}
+
+.header__user-bookings {
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  align-items: center;
+}
+
+.form-container__user-bookings {
+  padding-left: 5%;
+}
+
+.user-bookings-header {
+  margin-bottom: 1%;
+  font-size: 2.5rem;
+}
+
+.user-booking-outer-grid {
+  display: grid;
+  grid-template-columns: 0.4fr 0.6fr 0.25fr;
+}
+
+.booking-delete-button {
+  border: none;
+  background-color: var(--primary-grey);
+  color: rgb(238, 0, 0);
+  font-size: 2rem;
+  text-align: center;
+  height: 30px;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0;
+  margin-left: 15px;
+  transform: rotate(90deg);
+}
+
+.booking-delete-button:focus {
+  outline: none;
+}
+
+.user-booking-text {
+  font-size: 1.3rem;
+}
+
+.user-booking-text-user {
+  color: rgb(0, 89, 255);
+}
+
+.user-booking-text-start-date {
+  color: rgb(0, 89, 255);
+}
+
+.user-booking-text-end-date {
+  color: rgb(0, 89, 255);
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .modal-box__user-bookings {
+    height: 50%;
+    width: 75%;
+    padding: 2%;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  .modal-box__user-bookings {
+    height: 60%;
+    width: 75%;
+    padding: 2%;
+  }
+  .user-booking-outer-grid {
+    column-gap: 1%;
+    grid-template-columns: 0.25fr 0.6fr 0.1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal-box__user-bookings {
+    height: 60%;
+    width: 100%;
+    padding: 15px;
+  }
+  .form-container__user-bookings {
+    padding-left: 0%;
+  }
+  .user-bookings-header {
+    margin-bottom: 1%;
+    font-size: 2rem;
+  }
+  .user-booking-outer-grid {
+    column-gap: 3%;
+    grid-template-columns: 0.4fr 0.6fr 0.05fr;
+  }
+}

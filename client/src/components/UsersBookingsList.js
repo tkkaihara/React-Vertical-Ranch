@@ -46,9 +46,9 @@ export default function CampgroundEdit() {
 
   return (
     <>
-      <div className="header__campground-view-edit">
-        <div className="campground-view-header">
-          <h1 className="font-weight-300">Your Bookings:</h1>
+      <div className="header__user-bookings">
+        <div className="user-bookings-header">
+          <p className="font-weight-300">Your Bookings:</p>
         </div>
         <button
           onClick={handleUsersBookingsModal}
