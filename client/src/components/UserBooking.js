@@ -23,7 +23,10 @@ export default function UserBooking(props) {
           <div>
             <button
               onClick={() => {
-                handleBookingDeleteUser(_id, campground._id);
+                handleBookingDeleteUser(_id, campground);
+                campground.camp_bookings = campground.camp_bookings.filter(
+                  (booking) => booking._id !== _id
+                );
               }}
               className="booking-delete-button"
             >

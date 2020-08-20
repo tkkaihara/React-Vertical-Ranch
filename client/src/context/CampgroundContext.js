@@ -276,6 +276,7 @@ export function CampgroundProvider({ children }) {
               });
           });
           let camp = {
+            camp_id: campground._id,
             camp_name: campground.name,
             camp_bookings: retrievedBookings,
           };
@@ -437,18 +438,21 @@ export function CampgroundProvider({ children }) {
       });
   }
   // Handles Deleting Bookings From Users' Modal
-  function handleBookingDeleteUser(id, campID) {
+  function handleBookingDeleteUser(id, campground) {
+    const newBookingsIdArray = campground.camp_bookings.filter(
+      (booking) => booking._id !== id
+    );
     const currentToken = localStorage.getItem("token");
     axios({
-      url: `/api/campgrounds/${campID}/bookings/${id}`,
+      url: `/api/campgrounds/${campground.camp_id}/bookings/${id}`,
       method: "DELETE",
+      data: newBookingsIdArray,
       headers: {
         "x-auth-token": `${currentToken}`,
       },
     })
       .then(() => {
-        console.log("Campground booking deleted from the server");
-        toast.success("Campground booking deleted!", {
+        toast.success("Your booking has been deleted!", {
           position: "bottom-right",
           autoClose: 2000,
           hideProgressBar: false,
@@ -457,10 +461,10 @@ export function CampgroundProvider({ children }) {
           draggable: true,
           progress: undefined,
         });
+        handleUsersBookingsModal();
       })
       .catch(() => {
-        console.log("Internal Server Error, campground booking not deleted");
-        toast.error("Error, campground booking not deleted...", {
+        toast.error("Error, booking not deleted...", {
           position: "bottom-right",
           autoClose: 2000,
           hideProgressBar: false,

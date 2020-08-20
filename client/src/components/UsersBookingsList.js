@@ -17,6 +17,7 @@ export default function CampgroundEdit() {
     ) {
       const currentUserFullName = `${currentUser.first_name} ${currentUser.last_name}`;
       return allCampgroundBookings.map((campground) => {
+        console.log(campground);
         let campName = campground.camp_name;
         return campground.camp_bookings.map((booking) => {
           if (
