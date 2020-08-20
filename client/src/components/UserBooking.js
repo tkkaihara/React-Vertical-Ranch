@@ -2,9 +2,10 @@ import React from "react";
 import moment from "moment";
 import { useCampground } from "../context/CampgroundContext";
 
-export default function Booking(booking) {
-  const { handleBookingDelete } = useCampground();
-  const { _id, user, date_range } = booking;
+export default function UserBooking(props) {
+  const { booking, campName, campground } = props;
+  const { handleBookingDeleteUser } = useCampground();
+  const { _id, date_range } = booking;
   const startDate = moment(date_range[0]).format("MMM Do YYYY");
   const endDate = moment(date_range[1]).format("MMM Do YYYY");
 
@@ -13,7 +14,7 @@ export default function Booking(booking) {
       <div className="lead">
         <div className="booking-outer-grid">
           <div>
-            <span className="booking-text-user">{user}</span>:
+            <span className="booking-text-user">{campName}</span>:
           </div>
           <div>
             <span className="booking-text-start-date">{startDate}</span> -{" "}
@@ -22,7 +23,7 @@ export default function Booking(booking) {
           <div>
             <button
               onClick={() => {
-                handleBookingDelete(_id);
+                handleBookingDeleteUser(_id, campground._id);
               }}
               className="booking-delete-button"
             >

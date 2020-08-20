@@ -30,12 +30,10 @@ export default function BookingCalendar() {
       selectedBookings.map((booking) => {
         if (booking.user !== currentUserFullName) {
           filteredNotUsersBookings.push(booking);
-          console.log("loop", filteredNotUsersBookings);
         } else {
           return undefined;
         }
       });
-      console.log("filteredNotUsersBookings", filteredNotUsersBookings);
       return filteredNotUsersBookings;
     }
   }
@@ -43,7 +41,6 @@ export default function BookingCalendar() {
   function bookedDates() {
     let bookedDates = [];
     let filteredNotUsersBookings = filterNotUsersBookings();
-    console.log("bookedDates", filteredNotUsersBookings);
     if (!currentUser && selectedBookings.length > 0) {
       selectedBookings.map((booking) => {
         let range = booking.date_range;
@@ -63,7 +60,6 @@ export default function BookingCalendar() {
         bookedDates = bookedDates.concat(range);
       });
     }
-    console.log("final bookedDates", filteredNotUsersBookings);
     return bookedDates;
   }
 
@@ -93,7 +89,6 @@ export default function BookingCalendar() {
   function userBookedDates() {
     let userBookedDates = [];
     let filteredSelectedUsersBookings = filterUsersBookings();
-    console.log(filteredSelectedUsersBookings);
     if (
       currentUser &&
       selectedBookings !== null &&
@@ -106,7 +101,6 @@ export default function BookingCalendar() {
         range = Array.from(range.by("days")).map((m) => m.format("YYYY-MM-DD"));
         userBookedDates = userBookedDates.concat(range);
       });
-      console.log("userBookedDates", userBookedDates);
     }
     return userBookedDates;
   }

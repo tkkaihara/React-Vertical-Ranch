@@ -5,7 +5,7 @@ import { NavItem } from "reactstrap";
 
 export default function AppNavbarRegisterLogin(props) {
   const { toggle } = props;
-  const { handleAuthModal, setIsRegisterWindow, message, notify } = useUser();
+  const { handleAuthModal, setIsRegisterWindow } = useUser();
 
   return (
     <>

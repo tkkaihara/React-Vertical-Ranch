@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-scroll";
 import { useUser } from "../context/UserContext";
+import { useCampground } from "../context/CampgroundContext";
 import AuthModal from "./AuthModal";
+import UsersBookingsModal from "./UsersBookingsModal";
 import AppNavbarRegisterLogin from "./AppNavbarRegisterLogin";
 import AppNavbarLoggedIn from "./AppNavbarLoggedIn";
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem } from "reactstrap";
 
 export default function AppNavbar() {
   const { modalAuthRef, currentUser } = useUser();
+  const { modalUsersBookingsRef } = useCampground();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -76,13 +79,14 @@ export default function AppNavbar() {
           </Nav>
           <Nav className="justify-content-end navbar" navbar>
             {!currentUser && <AppNavbarRegisterLogin toggle={mobileToggle} />}
-            {currentUser && <AppNavbarLoggedIn />}
+            {currentUser && <AppNavbarLoggedIn toggle={mobileToggle} />}
           </Nav>
           <div className="navbar-right-push"></div>
         </Collapse>
       </Navbar>
 
       <AuthModal ref={modalAuthRef} />
+      <UsersBookingsModal ref={modalUsersBookingsRef} />
     </>
   );
 }

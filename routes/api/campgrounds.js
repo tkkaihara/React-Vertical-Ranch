@@ -32,13 +32,6 @@ router.post("/", auth, (req, res) => {
   newCampground.save().then((campground) => res.json(campground));
 });
 
-// // @route GET api/campgrounds/:id/edit
-// // @desc Edit a campground
-// // @access Private
-// router.get("/:id/edit", (req, res) => {
-//   res.send("Edit Author " + req.params.id);
-// });
-
 // @route PUT api/campgrounds/:id
 // @desc Update a campground
 // @access Private

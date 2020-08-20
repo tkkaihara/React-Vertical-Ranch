@@ -25,6 +25,7 @@ export function CampgroundProvider({ children }) {
   const [selectedCampgroundId, setSelectedCampgroundId] = useState(null);
 
   let selectedCampground = campgrounds[selectedCampgroundIndex];
+  let allCampgroundBookings = [];
   // Selected Bookings
   const [selectedBookings, setSelectedBookings] = useState(null);
   // Setting If Edit is Visbile
@@ -38,6 +39,7 @@ export function CampgroundProvider({ children }) {
   // Setting Ref for Modals
   const modalAddRef = useRef();
   const modalViewEditRef = useRef();
+  const modalUsersBookingsRef = useRef();
   // Retrieving Campground Data from MongoDB
   useEffect(() => {
     const campgroundData = async () => {
@@ -58,7 +60,7 @@ export function CampgroundProvider({ children }) {
     campgroundData();
     let retrievedSelectedBookings = retrieveBookings();
     setSelectedBookings(retrievedSelectedBookings);
-  }, [selectedCampgroundId]);
+  }, [selectedCampgroundId, currentUser]);
 
   // Check User Authentication whenever state(s) change
   useEffect(() => {
@@ -76,6 +78,11 @@ export function CampgroundProvider({ children }) {
     handleOpenAddCampgroundModal,
     handleOpenViewEditCampgroundModal,
   ]);
+
+  // Retrieve Users' Bookings for all campgrounds
+  useEffect(() => {
+    retrieveAllBookings();
+  }, [campgrounds, currentUser]);
 
   // Handle Campground Add
   function handleCampgroundAdd(input) {
@@ -200,6 +207,9 @@ export function CampgroundProvider({ children }) {
   function handleOpenViewEditCampgroundModal() {
     modalViewEditRef.current.toggleModal();
   }
+  function handleUsersBookingsModal() {
+    modalUsersBookingsRef.current.toggleModal();
+  }
   // Handles Clearing Calendar When Exiting Modal
   function handleCalendarClear() {
     setStartDate(null);
@@ -218,7 +228,6 @@ export function CampgroundProvider({ children }) {
   // Retrieves Bookings
   function retrieveBookings() {
     let retrievedBookings = [];
-
     if (
       selectedCampgroundId !== null &&
       selectedCampgroundIndex !== null &&
@@ -243,7 +252,41 @@ export function CampgroundProvider({ children }) {
     }
     return null;
   }
-
+  // Retrieves Bookings
+  function retrieveAllBookings() {
+    if (currentUser) {
+      campgrounds.map((campground) => {
+        let retrievedBookings = [];
+        if (
+          campground.bookings &&
+          campground.bookings !== undefined &&
+          campground.bookings !== null
+        ) {
+          campground.bookings.map((booking) => {
+            axios({
+              url: `/api/campgrounds/${campground._id}/bookings/${booking}`,
+              method: "GET",
+              data: campground,
+            })
+              .then((res) => {
+                retrievedBookings.push(res.data);
+              })
+              .catch(() => {
+                console.log("Internal Server Error");
+              });
+          });
+          let camp = {
+            camp_name: campground.name,
+            camp_bookings: retrievedBookings,
+          };
+          allCampgroundBookings.push(camp);
+        }
+      });
+      return allCampgroundBookings;
+    } else {
+      return null;
+    }
+  }
   // Handles Book Button
   function handleCalendarBook() {
     let isOverlapped = false;
@@ -393,6 +436,41 @@ export function CampgroundProvider({ children }) {
         });
       });
   }
+  // Handles Deleting Bookings From Users' Modal
+  function handleBookingDeleteUser(id, campID) {
+    const currentToken = localStorage.getItem("token");
+    axios({
+      url: `/api/campgrounds/${campID}/bookings/${id}`,
+      method: "DELETE",
+      headers: {
+        "x-auth-token": `${currentToken}`,
+      },
+    })
+      .then(() => {
+        console.log("Campground booking deleted from the server");
+        toast.success("Campground booking deleted!", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch(() => {
+        console.log("Internal Server Error, campground booking not deleted");
+        toast.error("Error, campground booking not deleted...", {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  }
 
   const CampgroundContextValue = {
     handleBookingDelete,
@@ -402,17 +480,21 @@ export function CampgroundProvider({ children }) {
     handleCampgroundSelect,
     handleCampgroundChange,
     handleCampgroundDelete,
+    handleBookingDeleteUser,
     handleEditWindow,
     handleOpenAddCampgroundModal,
     handleOpenViewEditCampgroundModal,
+    handleUsersBookingsModal,
     campgrounds,
     editWindow,
     modalAddRef,
     modalViewEditRef,
+    modalUsersBookingsRef,
     selectedCampgroundIndex,
     selectedCampgroundId,
     selectedCampground,
     selectedBookings,
+    allCampgroundBookings,
     startDate,
     setStartDate,
     endDate,
