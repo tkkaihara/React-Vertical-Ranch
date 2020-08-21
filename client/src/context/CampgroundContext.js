@@ -390,7 +390,6 @@ export function CampgroundProvider({ children }) {
         });
     }
     handleCalendarClear();
-    window.location.reload();
   }
   // Handles Deleting Booking
   function handleBookingDelete(id) {
