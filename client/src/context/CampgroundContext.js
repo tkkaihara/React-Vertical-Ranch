@@ -373,6 +373,7 @@ export function CampgroundProvider({ children }) {
             draggable: true,
             progress: undefined,
           });
+          setSelectedCampgroundId(null);
         })
         .catch(() => {
           toast.error(
