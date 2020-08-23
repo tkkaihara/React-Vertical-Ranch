@@ -351,8 +351,8 @@ export function CampgroundProvider({ children }) {
         user_id: currentUser.id,
         date_range: [formattedStartDate, formattedEndDate],
       };
-      console.log(newBooking);
       const editedSelectedCampground = selectedCampground;
+      setSelectedCampgroundId(null);
       editedSelectedCampground.bookings.push(newBooking);
       const currentToken = localStorage.getItem("token");
       axios({
@@ -373,7 +373,6 @@ export function CampgroundProvider({ children }) {
             draggable: true,
             progress: undefined,
           });
-          setSelectedCampgroundId(null);
         })
         .catch(() => {
           toast.error(
