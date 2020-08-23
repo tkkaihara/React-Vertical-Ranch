@@ -60,7 +60,7 @@ export function CampgroundProvider({ children }) {
     campgroundData();
     let retrievedSelectedBookings = retrieveBookings();
     setSelectedBookings(retrievedSelectedBookings);
-  }, [selectedCampgroundId, currentUser]);
+  }, [selectedCampgroundId, currentUser, selectedCampgroundIndex]);
 
   // Check User Authentication whenever state(s) change
   useEffect(() => {
