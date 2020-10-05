@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import moment from "moment";
-import axios from "axios";
-import { useUser } from "./UserContext";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, {useContext, useState, useEffect, useRef} from 'react';
+import moment from 'moment';
+import axios from 'axios';
+import {useUser} from './UserContext';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const CampgroundContext = React.createContext();
 
@@ -11,9 +11,9 @@ export function useCampground() {
   return useContext(CampgroundContext);
 }
 
-export function CampgroundProvider({ children }) {
+export function CampgroundProvider({children}) {
   // Importing Current User from User Context
-  const { currentUser, handleAuth } = useUser();
+  const {currentUser, handleAuth} = useUser();
 
   // Setting Campgrounds Array State
   const [campgrounds, setCampgrounds] = useState([]);
@@ -44,8 +44,8 @@ export function CampgroundProvider({ children }) {
   useEffect(() => {
     const campgroundData = async () => {
       await axios({
-        url: "/api/campgrounds/",
-        method: "GET",
+        url: '/api/campgrounds/',
+        method: 'GET',
         data: campgrounds,
       })
         .then((res) => {
@@ -54,7 +54,7 @@ export function CampgroundProvider({ children }) {
           }
         })
         .catch(() => {
-          console.log("Internal Server Error");
+          console.log('Internal Server Error');
         });
     };
     campgroundData();
@@ -92,18 +92,18 @@ export function CampgroundProvider({ children }) {
       price: input.price,
       description: input.description,
     };
-    const currentToken = localStorage.getItem("token");
+    const currentToken = localStorage.getItem('token');
     axios({
-      url: "/api/campgrounds/",
-      method: "POST",
+      url: '/api/campgrounds/',
+      method: 'POST',
       data: newCampground,
       headers: {
-        "x-auth-token": `${currentToken}`,
+        'x-auth-token': `${currentToken}`,
       },
     })
       .then(() => {
-        toast.success("New campground added!", {
-          position: "bottom-right",
+        toast.success('New campground added!', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -113,8 +113,8 @@ export function CampgroundProvider({ children }) {
         });
       })
       .catch(() => {
-        toast.error("Error, campground not added...", {
-          position: "bottom-right",
+        toast.error('Error, campground not added...', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -138,21 +138,21 @@ export function CampgroundProvider({ children }) {
     const index = newCampgrounds.findIndex((c) => c._id === id);
     newCampgrounds[index] = campground;
     setCampgrounds(newCampgrounds);
-    const currentToken = localStorage.getItem("token");
+    const currentToken = localStorage.getItem('token');
     axios({
       url: `/api/campgrounds/${id}`,
-      method: "PUT",
+      method: 'PUT',
       data: campground,
       headers: {
-        "x-auth-token": `${currentToken}`,
+        'x-auth-token': `${currentToken}`,
       },
     })
       .then(() => {
-        console.log("Campground updated!");
+        console.log('Campground updated!');
       })
       .catch(() => {
-        toast.error("Error, campground not updated...", {
-          position: "bottom-right",
+        toast.error('Error, campground not updated...', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -170,13 +170,13 @@ export function CampgroundProvider({ children }) {
         (campground) => campground._id !== selectedCampgroundId
       )
     );
-    const currentToken = localStorage.getItem("token");
+    const currentToken = localStorage.getItem('token');
     axios({
       url: `/api/campgrounds/${selectedCampgroundId}`,
-      method: "DELETE",
+      method: 'DELETE',
       data: selectedCampground,
       headers: {
-        "x-auth-token": `${currentToken}`,
+        'x-auth-token': `${currentToken}`,
       },
     })
       .then(() => {
@@ -184,8 +184,8 @@ export function CampgroundProvider({ children }) {
         setSelectedCampgroundId(undefined);
       })
       .catch(() => {
-        toast.error("Error, campground not deleted...", {
-          position: "bottom-right",
+        toast.error('Error, campground not deleted...', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -219,7 +219,6 @@ export function CampgroundProvider({ children }) {
     setSelectedCampgroundId(null);
     handleOpenViewEditCampgroundModal();
     setEditWindow(false);
-    // window.location.reload();
   }
   // Handles Edit Button
   function handleEditWindow() {
@@ -238,14 +237,14 @@ export function CampgroundProvider({ children }) {
       for (let i = 0; i < selectedCampground.bookings.length; i++) {
         axios({
           url: `/api/campgrounds/${selectedCampground._id}/bookings/${selectedCampground.bookings[i]}`,
-          method: "GET",
+          method: 'GET',
           data: selectedCampground,
         })
           .then((res) => {
             retrievedBookings.push(res.data);
           })
           .catch(() => {
-            console.log("Internal Server Error");
+            console.log('Internal Server Error');
           });
       }
       return retrievedBookings;
@@ -265,14 +264,14 @@ export function CampgroundProvider({ children }) {
           campground.bookings.map((booking) => {
             axios({
               url: `/api/campgrounds/${campground._id}/bookings/${booking}`,
-              method: "GET",
+              method: 'GET',
               data: campground,
             })
               .then((res) => {
                 retrievedBookings.push(res.data);
               })
               .catch(() => {
-                console.log("Internal Server Error");
+                console.log('Internal Server Error');
               });
           });
           let camp = {
@@ -305,8 +304,8 @@ export function CampgroundProvider({ children }) {
       }
     }
     if (!currentUser) {
-      toast.error("Please login to book a campground!", {
-        position: "bottom-right",
+      toast.error('Please login to book a campground!', {
+        position: 'bottom-right',
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -317,11 +316,11 @@ export function CampgroundProvider({ children }) {
     } else if (
       startDate === null ||
       endDate === null ||
-      startDate === "Invalid date" ||
-      endDate === "Invalid date"
+      startDate === 'Invalid date' ||
+      endDate === 'Invalid date'
     ) {
-      return toast.error("Please enter both start and end dates...", {
-        position: "bottom-right",
+      return toast.error('Please enter both start and end dates...', {
+        position: 'bottom-right',
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -331,9 +330,9 @@ export function CampgroundProvider({ children }) {
       });
     } else if (isOverlapped === true) {
       return toast.error(
-        "You cannot overlap another booking, please choose valid dates...",
+        'You cannot overlap another booking, please choose valid dates...',
         {
-          position: "bottom-right",
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -343,8 +342,8 @@ export function CampgroundProvider({ children }) {
         }
       );
     } else {
-      const formattedStartDate = moment(startDate).format("YYYY-MM-DD");
-      const formattedEndDate = moment(endDate).format("YYYY-MM-DD");
+      const formattedStartDate = moment(startDate).format('YYYY-MM-DD');
+      const formattedEndDate = moment(endDate).format('YYYY-MM-DD');
       const fullName = `${currentUser.first_name} ${currentUser.last_name}`;
       const newBooking = {
         user: fullName,
@@ -354,31 +353,34 @@ export function CampgroundProvider({ children }) {
       const editedSelectedCampground = selectedCampground;
       setSelectedCampgroundId(null);
       editedSelectedCampground.bookings.push(newBooking);
-      const currentToken = localStorage.getItem("token");
+      const currentToken = localStorage.getItem('token');
       axios({
         url: `/api/campgrounds/${editedSelectedCampground._id}/bookings`,
-        method: "POST",
+        method: 'POST',
         data: newBooking,
         headers: {
-          "x-auth-token": `${currentToken}`,
+          'x-auth-token': `${currentToken}`,
         },
       })
         .then(() => {
-          toast.success("Your campground is booked!", {
-            position: "bottom-right",
+          toast.success('Your campground is booked!', {
+            position: 'bottom-right',
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
+            onHidden: function () {
+              window.location.reload();
+            },
           });
         })
         .catch(() => {
           toast.error(
-            "Hmmm, something went wrong. Please try booking again...",
+            'Hmmm, something went wrong. Please try booking again...',
             {
-              position: "bottom-right",
+              position: 'bottom-right',
               autoClose: 2000,
               hideProgressBar: false,
               closeOnClick: true,
@@ -402,19 +404,19 @@ export function CampgroundProvider({ children }) {
     const editedSelectedCampground = selectedCampground;
     setSelectedBookings(newBookingsArray);
     editedSelectedCampground.bookings = newBookingsIdArray;
-    const currentToken = localStorage.getItem("token");
+    const currentToken = localStorage.getItem('token');
     axios({
       url: `/api/campgrounds/${selectedCampground._id}/bookings/${id}`,
-      method: "DELETE",
+      method: 'DELETE',
       data: newBookingsIdArray,
       headers: {
-        "x-auth-token": `${currentToken}`,
+        'x-auth-token': `${currentToken}`,
       },
     })
       .then(() => {
-        console.log("Campground booking deleted from the server");
-        toast.success("Campground booking deleted!", {
-          position: "bottom-right",
+        console.log('Campground booking deleted from the server');
+        toast.success('Campground booking deleted!', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -424,9 +426,9 @@ export function CampgroundProvider({ children }) {
         });
       })
       .catch(() => {
-        console.log("Internal Server Error, campground booking not deleted");
-        toast.error("Error, campground booking not deleted...", {
-          position: "bottom-right",
+        console.log('Internal Server Error, campground booking not deleted');
+        toast.error('Error, campground booking not deleted...', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -441,18 +443,18 @@ export function CampgroundProvider({ children }) {
     const newBookingsIdArray = campground.camp_bookings.filter(
       (booking) => booking._id !== id
     );
-    const currentToken = localStorage.getItem("token");
+    const currentToken = localStorage.getItem('token');
     axios({
       url: `/api/campgrounds/${campground.camp_id}/bookings/${id}`,
-      method: "DELETE",
+      method: 'DELETE',
       data: newBookingsIdArray,
       headers: {
-        "x-auth-token": `${currentToken}`,
+        'x-auth-token': `${currentToken}`,
       },
     })
       .then(() => {
-        toast.success("Your booking has been deleted!", {
-          position: "bottom-right",
+        toast.success('Your booking has been deleted!', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -463,8 +465,8 @@ export function CampgroundProvider({ children }) {
         handleUsersBookingsModal();
       })
       .catch(() => {
-        toast.error("Error, booking not deleted...", {
-          position: "bottom-right",
+        toast.error('Error, booking not deleted...', {
+          position: 'bottom-right',
           autoClose: 2000,
           hideProgressBar: false,
           closeOnClick: true,
